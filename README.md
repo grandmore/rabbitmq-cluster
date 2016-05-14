@@ -55,6 +55,13 @@ rabbit3:
     - "5674:5672"
 ```
 
+# Setting default user and password
+If you wish to change the default username and password of guest / guest, you can do so with the RABBITMQ_DEFAULT_USER and RABBITMQ_DEFAULT_PASS environmental variables:
+
+$ docker run -d --hostname my-rabbit --name some-rabbit -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management
+You can then go to http://localhost:8080 or http://host-ip:8080 in a browser and use user/password to gain access to the management console
+
+
 If needed, additional nodes can be added to this file.
 
 Once cluster is up:
