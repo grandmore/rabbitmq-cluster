@@ -1,6 +1,7 @@
 rabbit1:
   image: grandmore/rabbitmq-cluster
   hostname: rabbit1
+  mem_limit: 128m
   environment:
     - ERLANG_COOKIE=abcdefg
   ports:
@@ -9,6 +10,7 @@ rabbit1:
 rabbit2:
   image: grandmore/rabbitmq-cluster
   hostname: rabbit2
+  mem_limit: 128m
   links:
     - rabbit1
   environment:
@@ -21,11 +23,14 @@ rabbit2:
 rabbit3:
   image: grandmore/rabbitmq-cluster
   hostname: rabbit3
+  mem_limit: 128m
   links:
     - rabbit1
     - rabbit2
   environment:
     - ERLANG_COOKIE=abcdefg
     - CLUSTER_WITH=rabbit1
+    - ENABLE_RAM=true
   ports:
     - "5674:5672"
+    - "15674:15672"
